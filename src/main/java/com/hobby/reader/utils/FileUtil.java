@@ -1,6 +1,9 @@
 package com.hobby.reader.utils;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 public class FileUtil {
 
@@ -10,7 +13,8 @@ public class FileUtil {
     this.fileName = fileName;
     }
 
-    public  InputStream getFileInputStream(){
-        return getClass().getClassLoader().getResourceAsStream(fileName);
+    public Reader getFileInputStream(){
+        InputStream inputStream =  getClass().getClassLoader().getResourceAsStream(fileName);
+        return new BufferedReader(new InputStreamReader(inputStream));
     }
 }

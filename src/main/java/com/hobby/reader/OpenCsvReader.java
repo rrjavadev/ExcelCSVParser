@@ -6,18 +6,20 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Arrays;
 import java.util.List;
 
-public class ApacheCommonsCSVReader implements CSVReader {
+public class OpenCsvReader implements CSVReader {
 
     @Override
     public List<String> getRecords(String fileName) {
 
         FileUtil fileUtil = new FileUtil(fileName);
-        try (Reader reader = fileUtil.getFileInputStream()) {
-            Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(reader);
-           while(records.iterator() .hasNext()) {
-                System.out.println(records.iterator().next());
+        try (com.opencsv.CSVReader reader = new com.opencsv.CSVReader(fileUtil.getFileInputStream())) {
+            String[] line = null;
+            while ((line = reader.readNext()) != null) {
+                Arrays.stream(line).forEach(System.out::print);
+                System.out.println("\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
