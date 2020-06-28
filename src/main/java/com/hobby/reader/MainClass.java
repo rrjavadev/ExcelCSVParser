@@ -4,7 +4,8 @@ import java.util.List;
 
 public class MainClass {
 
-    private static final String FILE_LOCATION = "csv/sample.csv";
+    private static final String CSV_SAMPLE = "csv/sample.csv";
+    private static final String XLSX_SAMPLE = "xlsx/sample_xlsx.xlsx";
 
     public static void main(String[] args) {
 
@@ -12,17 +13,24 @@ public class MainClass {
         //ApacheCommons - 376ms
         //OpenCSV - 1399ms
 
-        CSVReader reader = new ApacheCommonsCSVReader();
-        Long start = System.currentTimeMillis();
-        List<String> csvRecords = reader.getRecords(FILE_LOCATION);
-        Long end = System.currentTimeMillis();
-        System.out.println("Difference" + (end - start) + "ms");
+//        CSVReader reader = new ApacheCommonsCSVReader();
+//        Long start = System.currentTimeMillis();
+//        List<String> csvRecords = reader.getRecords(CSV_SAMPLE);
+//        Long end = System.currentTimeMillis();
+//        System.out.println("Difference" + (end - start) + "ms");
+//
+//        System.out.println("\n\n");
+//        Long start2 = System.currentTimeMillis();
+//        reader = new OpenCsvReader();
+//        List<String> openCsv = reader.getRecords(CSV_SAMPLE);
+//        Long end2 = System.currentTimeMillis();
+//        System.out.println("Difference openCsv" + (end2 - start2) + "ms");
 
         System.out.println("\n\n");
-        Long start2 = System.currentTimeMillis();
-        reader = new OpenCsvReader();
-        List<String> openCsv = reader.getRecords(FILE_LOCATION);
-        Long end2 = System.currentTimeMillis();
-        System.out.println("Difference openCsv" + (end2 - start2) + "ms");
+        Long start3 = System.currentTimeMillis();
+        XLSXReader xlsxReader = new ExcelXStreamReader();
+        List<String> xlsxRecords = xlsxReader.getRecords(XLSX_SAMPLE);
+        Long end3 = System.currentTimeMillis();
+        System.out.println("Difference xlsx" + (end3 - start3) + "ms");
     }
 }
