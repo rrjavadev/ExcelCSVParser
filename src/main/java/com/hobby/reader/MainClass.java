@@ -1,13 +1,16 @@
 package com.hobby.reader;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
+import java.io.IOException;
 import java.util.List;
 
 public class MainClass {
 
     private static final String CSV_SAMPLE = "csv/sample.csv";
-    private static final String XLSX_SAMPLE = "xlsx/sample_xlsx.xlsx";
+    private static final String XLSX_SAMPLE = "/Users/roshinivr/hobby/ExcelCSVParser/src/main/resources/xlsx/sample_xlsx.xlsx";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InvalidFormatException {
 
         //4.1MB file
         //ApacheCommons - 376ms
