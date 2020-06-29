@@ -52,7 +52,8 @@ public class ExcelXStreamReader implements XLSXReader {
                 .open(file); // InputStream or File for XLSX file (required)
 
         Iterator<Row> rowIterator = workbook.getSheetAt(0).rowIterator();
-        while (rowIterator.hasNext()) {
+        int count = 0;
+        while (rowIterator.hasNext() && count < 50) {
             Row row = rowIterator.next();
             DataFormatter dataFormatter = new DataFormatter();
             System.out.println(dataFormatter.formatCellValue(row.cellIterator().next()));
@@ -77,8 +78,11 @@ public class ExcelXStreamReader implements XLSXReader {
             XSSFSheet mySheet = wb.getSheetAt(0);
 
             Iterator<Row> rowIterator = mySheet.iterator();
-            while (rowIterator.hasNext()) {
+            int count = 0;
+
+            while (rowIterator.hasNext() && count < 50) {
                 Row row = rowIterator.next();
+                count++;
 
                 Iterator<Cell> cellIterator = row.cellIterator();
                 while (cellIterator.hasNext()) {
